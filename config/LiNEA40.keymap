@@ -64,7 +64,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -129,21 +129,25 @@
         kakko1 {
             bindings = <&kakko1>;
             key-positions = <14 16>;
+            layers = <3>;
         };
 
         kakko2 {
             bindings = <&kakko2>;
             key-positions = <13 16>;
+            layers = <3>;
         };
 
         kakko3 {
             bindings = <&kakko3>;
             key-positions = <12 17>;
+            layers = <3>;
         };
 
         kakko4 {
             bindings = <&kakko4>;
             key-positions = <27 28>;
+            layers = <0>;
         };
     };
 
@@ -220,9 +224,9 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LPAR &kp RPAR>,
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_ARROW>;
 
             label = "KAKKO";
@@ -232,9 +236,9 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_BRACE &kp RIGHT_BRACE>,
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_ARROW>;
 
             label = "KAKKO2";
@@ -244,9 +248,9 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_BRACKET &kp RIGHT_BRACKET>,
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_ARROW>;
 
             label = "KAKKO3";
@@ -256,9 +260,9 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LESS_THAN &kp GREATER_THAN>,
-                <&macro_press>,
+                <&macro_tap>,
                 <&kp LEFT_ARROW>;
 
             label = "KAKKO4";
