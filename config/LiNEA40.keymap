@@ -35,7 +35,10 @@
 
 &mt { flavor = "balanced"; };
 
-&lt { quick-tap-ms = <125>; };
+&lt {
+    quick-tap-ms = <125>;
+    tapping-term-ms = <150>;
+};
 
 / {
     input_processors {
@@ -61,7 +64,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -122,18 +125,6 @@
             key-positions = <0 1 2>;
             layers = <2>;
         };
-
-        muhenkan {
-            bindings = <&kp LANG2>;
-            key-positions = <35 34>;
-            layers = <0>;
-        };
-
-        henkan {
-            bindings = <&kp LANG1>;
-            key-positions = <36 37>;
-            layers = <0>;
-        };
     };
 
     behaviors {
@@ -150,6 +141,16 @@
 
             tap-ms = <20>;
         };
+
+        mtkana: mtkana {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MTKANA";
+            bindings = <&kp>, <&henkankirikae>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            flavor = "tap-preferred";
+        };
     };
 
     macros {
@@ -160,7 +161,9 @@
                 <&macro_press>,
                 <&kp LEFT_GUI &kp LEFT_SHIFT>,
                 <&macro_tap>,
-                <&kp NUMBER_4>;
+                <&kp NUMBER_4>,
+                <&macro_release>,
+                <&kp LEFT_GUI &kp LEFT_SHIFT>;
 
             label = "SCREENSHOT";
         };
@@ -172,9 +175,25 @@
                 <&macro_press>,
                 <&kp LEFT_GUI &kp LEFT_SHIFT &kp LCTRL>,
                 <&macro_tap>,
-                <&kp NUMBER_4>;
+                <&kp NUMBER_4>,
+                <&macro_release>,
+                <&kp LEFT_GUI &kp LEFT_SHIFT &kp LCTRL>;
 
             label = "CRIPBOARD_SCREENSHOT";
+        };
+
+        henkankirikae: henkankirikae {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_tap>,
+                <&kp SPACE>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "HENKANKIRIKAE";
         };
     };
 
@@ -183,10 +202,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E  &kp R             &kp T                                        &kp Y         &kp U  &kp I      &kp O              &kp P
-&kp A             &kp S         &kp D  &kp F             &kp G                                        &kp H         &kp J  &kp K      &kp L              &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V             &kp B                                        &kp N         &kp M  &kp COMMA  &kp DOT            &mt RIGHT_SHIFT SLASH
-&kp TAB           &kp LEFT_ALT  &none  &kp LEFT_COMMAND  &kp SPACE  &mt LCTRL ESC    &lt 2 BACKSPACE  &lt 3 RETURN         &mo 4      &kp RIGHT_COMMAND  &kp RIGHT_ALT
+&kp Q             &kp W         &kp E  &kp R               &kp T                                        &kp Y         &kp U  &kp I      &kp O              &kp P
+&kp A             &kp S         &kp D  &kp F               &kp G                                        &kp H         &kp J  &kp K      &kp L              &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V               &kp B                                        &kp N         &kp M  &kp COMMA  &kp DOT            &mt RIGHT_SHIFT SLASH
+&kp TAB           &kp LEFT_ALT  &none  &mtkana LEFT_GUI 0  &kp SPACE  &mt LCTRL ESC    &lt 2 BACKSPACE  &lt 3 RETURN         &mo 4      &kp RIGHT_COMMAND  &kp RIGHT_ALT
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
