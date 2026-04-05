@@ -64,7 +64,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -148,6 +148,29 @@
             bindings = <&kakko4>;
             key-positions = <27 28>;
             layers = <0>;
+        };
+
+        dquot {
+            bindings = <&dquot>;
+            key-positions = <25 26>;
+            layers = <3>;
+        };
+
+        squot {
+            bindings = <&squot>;
+            key-positions = <23 24>;
+            layers = <3>;
+        };
+
+        bquot {
+            bindings = <&backquot>;
+            key-positions = <33 22>;
+            layers = <3>;
+        };
+
+        code {
+            bindings = <&code>;
+            key-positions = <23 33>;
         };
     };
 
@@ -266,6 +289,58 @@
                 <&kp LEFT_ARROW>;
 
             label = "KAKKO4";
+        };
+
+        dquot: dquot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp DOUBLE_QUOTES &kp DOUBLE_QUOTES>,
+                <&macro_tap>,
+                <&kp LEFT_ARROW>;
+
+            label = "DQUOT";
+        };
+
+        squot: squot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp SQT &kp SQT>,
+                <&macro_tap>,
+                <&kp LEFT_ARROW>;
+
+            label = "SQUOT";
+        };
+
+        backquot: codearea {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp GRAVE &kp GRAVE>,
+                <&macro_tap>,
+                <&kp LEFT_ARROW>;
+
+            label = "CODEAREA";
+        };
+
+        code: code {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp GRAVE &kp GRAVE &kp GRAVE>,
+                <&macro_tap>,
+                <&kp RETURN &kp RETURN>,
+                <&macro_tap>,
+                <&kp GRAVE &kp GRAVE &kp GRAVE>,
+                <&macro_tap>,
+                <&kp UP_ARROW>;
+
+            label = "CODE";
         };
     };
 
