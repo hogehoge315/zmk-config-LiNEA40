@@ -33,6 +33,8 @@
     acceleration-exponent = <0>;
 };
 
+&mt { flavor = "balanced"; };
+
 / {
     input_processors {
         zip_wheel_scaler: zip_wheel_scaler {
@@ -57,7 +59,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,
+            //スクロール方向を逆転,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -69,6 +71,54 @@
         wireless {
             bindings = <&sl 5>;
             key-positions = <36 9>;
+        };
+
+        mouse_R_click {
+            bindings = <&mkp RCLK>;
+            key-positions = <16 18>;
+            layers = <1>;
+        };
+
+        mouse_C_click {
+            bindings = <&mkp MCLK>;
+            key-positions = <16 17 18>;
+            layers = <1>;
+        };
+
+        mouse_back {
+            bindings = <&mkp MB4>;
+            key-positions = <6 7>;
+            layers = <1>;
+        };
+
+        mouse_next {
+            bindings = <&mkp MB5>;
+            key-positions = <7 8>;
+            layers = <1>;
+        };
+
+        insert {
+            bindings = <&kp INSERT>;
+            key-positions = <26 27>;
+            layers = <2>;
+        };
+
+        delete {
+            bindings = <&kp DELETE>;
+            key-positions = <26 25>;
+            layers = <2>;
+        };
+
+        sc {
+            bindings = <&screenshot>;
+            key-positions = <0 1>;
+            layers = <2>;
+        };
+
+        sc_crip {
+            bindings = <&cripboard_screenshot>;
+            key-positions = <0 1 2>;
+            layers = <2>;
         };
     };
 
@@ -88,15 +138,41 @@
         };
     };
 
+    macros {
+        screenshot: screenshot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp NUMBER_4>;
+
+            label = "SCREENSHOT";
+        };
+
+        cripboard_screenshot: cripboard_screenshot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp LEFT_SHIFT &kp LCTRL>,
+                <&macro_tap>,
+                <&kp NUMBER_4>;
+
+            label = "CRIPBOARD_SCREENSHOT";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E  &kp R    &kp T                                          &kp Y            &kp U  &kp I             &kp O              &kp P
-&kp A             &kp S         &kp D  &kp F    &kp G                                          &kp H            &kp J  &kp K             &kp L              &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V    &kp B                                          &kp N            &kp M  &kp COMMA         &kp DOT            &mt RIGHT_SHIFT SLASH
-&mt LCTRL ESC     &kp LEFT_ALT  &none  &kp TAB  &mt LEFT_GUI LANG2  &kp SPACE    &lt 2 RETURN  &lt 3 BACKSPACE         &lt 4 LANGUAGE_1  &kp RIGHT_COMMAND  &kp RIGHT_ALT
+&kp Q             &kp W         &kp E  &kp R                   &kp T                               &kp Y            &kp U  &kp I             &kp O              &kp P
+&kp A             &kp S         &kp D  &kp F                   &kp G                               &kp H            &kp J  &kp K             &kp L              &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V                   &kp B                               &kp N            &kp M  &kp COMMA         &kp DOT            &mt RIGHT_SHIFT SLASH
+&mt LCTRL ESC     &kp LEFT_ALT  &none  &mt LEFT_COMMAND LANG2  &kp SPACE  &kp TAB    &lt 2 RETURN  &lt 3 BACKSPACE         &lt 4 LANGUAGE_1  &kp RIGHT_COMMAND  &kp RIGHT_ALT
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -104,10 +180,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans    &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans                    &mkp MB5  &mkp MB1  &mkp MB2  &mkp MB3  &trans
-&trans  &trans  &trans  &trans  &trans                    &mkp MB4  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans              &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                    &trans  &mkp MB1  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans            &trans  &trans  &trans
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -116,12 +192,12 @@
         MOVEANDNUM {
             bindings = <
 &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_4  &kp KP_NUMBER_5                    &kp KP_NUMBER_6  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_NUMBER_0
-&kp F1           &kp F2           &kp F3           &kp F4           &kp F5                             &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW     &kp RIGHT_ARROW  &kp INS
-&kp F6           &kp F7           &kp F8           &kp F9           &kp F10                            &kp HOME         &kp PAGE_DOWN    &kp PAGE_UP      &kp END          &kp DEL
+&kp F1           &kp F2           &kp F3           &kp F4           &kp F5                             &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW     &kp RIGHT_ARROW  &trans
+&kp F6           &kp F7           &kp F8           &kp F9           &kp F10                            &kp HOME         &kp PAGE_DOWN    &kp PAGE_UP      &kp END          &trans
 &kp F11          &kp F12          &trans           &trans           &trans           &trans    &trans  &trans                            &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
+            sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_DEC C_BRIGHTNESS_INC>;
         };
 
         MARK {
