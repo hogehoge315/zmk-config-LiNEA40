@@ -59,7 +59,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -120,6 +120,18 @@
             key-positions = <0 1 2>;
             layers = <2>;
         };
+
+        muhenkan {
+            bindings = <&kp LANG2>;
+            key-positions = <35 34>;
+            layers = <0>;
+        };
+
+        henkan {
+            bindings = <&kp LANG1>;
+            key-positions = <36 37>;
+            layers = <0>;
+        };
     };
 
     behaviors {
@@ -169,10 +181,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E  &kp R                   &kp T                               &kp Y            &kp U  &kp I             &kp O              &kp P
-&kp A             &kp S         &kp D  &kp F                   &kp G                               &kp H            &kp J  &kp K             &kp L              &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V                   &kp B                               &kp N            &kp M  &kp COMMA         &kp DOT            &mt RIGHT_SHIFT SLASH
-&mt LCTRL ESC     &kp LEFT_ALT  &none  &mt LEFT_COMMAND LANG2  &kp SPACE  &kp TAB    &lt 2 RETURN  &lt 3 BACKSPACE         &lt 4 LANGUAGE_1  &kp RIGHT_COMMAND  &kp RIGHT_ALT
+&kp Q             &kp W         &kp E  &kp R             &kp T                                        &kp Y         &kp U  &kp I      &kp O              &kp P
+&kp A             &kp S         &kp D  &kp F             &kp G                                        &kp H         &kp J  &kp K      &kp L              &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V             &kp B                                        &kp N         &kp M  &kp COMMA  &kp DOT            &mt RIGHT_SHIFT SLASH
+&kp TAB           &kp LEFT_ALT  &none  &kp LEFT_COMMAND  &kp SPACE  &mt LCTRL ESC    &lt 2 BACKSPACE  &lt 3 RETURN         &mo 4      &kp RIGHT_COMMAND  &kp RIGHT_ALT
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -197,7 +209,7 @@
 &kp F11          &kp F12          &trans           &trans           &trans           &trans    &trans  &trans                            &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_DEC C_BRIGHTNESS_INC>;
+            sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
         };
 
         MARK {
@@ -208,7 +220,7 @@
 &trans           &trans  &trans            &kp GRAVE       &trans                &trans    &trans  &trans                                    &trans             &kp PIPE       &trans
             >;
 
-            sensor-bindings = <&re_kp C_VOLUME_DOWN C_VOLUME_UP>;
+            sensor-bindings = <&re_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         TENKEY {
@@ -222,10 +234,10 @@
 
         WIRELESS {
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
-&none         &none         &none         &none         &none                         &none         &none         &none         &none           &none
-&none         &none         &none         &none         &none                         &none         &none         &none         &none           &bt BT_CLR
-&none         &none         &none         &none         &none         &none    &none  &none                       &bootloader   &studio_unlock  &bt BT_CLR_ALL
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
+&none         &none         &none         &none         &none                               &none         &none         &none         &none           &none
+&none         &none         &none         &none         &none                               &none         &none         &none         &none           &bt BT_CLR
+&none         &none         &none         &none         &none         &none    &bootloader  &none                       &none         &studio_unlock  &bt BT_CLR_ALL
             >;
         };
     };
