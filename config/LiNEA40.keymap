@@ -57,7 +57,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,
+            //スクロール方向を逆転,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -67,7 +67,7 @@
         compatible = "zmk,combos";
 
         wireless {
-            bindings = <&sl 4>;
+            bindings = <&sl 5>;
             key-positions = <36 9>;
         };
     };
@@ -93,10 +93,21 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E  &kp R      &kp T                                          &kp Y            &kp U  &kp I             &kp O              &kp P
-&kp A             &kp S         &kp D  &kp F      &kp G                                          &kp H            &kp J  &kp K             &kp L              &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V      &kp B                                          &kp N            &kp M  &kp COMMA         &kp DOT            &mt RIGHT_SHIFT SLASH
-&mt LCTRL ESC     &kp LEFT_ALT  &none  &lt 2 TAB  &mt LEFT_GUI LANG2  &kp SPACE    &lt 1 RETURN  &lt 2 BACKSPACE         &lt 3 LANGUAGE_1  &kp RIGHT_COMMAND  &kp RIGHT_ALT
+&kp Q             &kp W         &kp E  &kp R    &kp T                                          &kp Y            &kp U  &kp I             &kp O              &kp P
+&kp A             &kp S         &kp D  &kp F    &kp G                                          &kp H            &kp J  &kp K             &kp L              &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C  &kp V    &kp B                                          &kp N            &kp M  &kp COMMA         &kp DOT            &mt RIGHT_SHIFT SLASH
+&mt LCTRL ESC     &kp LEFT_ALT  &none  &kp TAB  &mt LEFT_GUI LANG2  &kp SPACE    &lt 2 RETURN  &lt 3 BACKSPACE         &lt 4 LANGUAGE_1  &kp RIGHT_COMMAND  &kp RIGHT_ALT
+            >;
+
+            sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
+        };
+
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans    &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans                    &mkp MB5  &mkp MB1  &mkp MB2  &mkp MB3  &trans
+&trans  &trans  &trans  &trans  &trans                    &mkp MB4  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans              &trans    &trans    &trans
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -140,17 +151,6 @@
 &none         &none         &none         &none         &none                         &none         &none         &none         &none           &bt BT_CLR
 &none         &none         &none         &none         &none         &none    &none  &none                       &bootloader   &studio_unlock  &bt BT_CLR_ALL
             >;
-        };
-
-        MOUSE {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans    &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans                    &mkp MB5  &mkp MB1  &mkp MB2  &mkp MB3  &trans
-&trans  &trans  &trans  &trans  &trans                    &mkp MB4  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans              &trans    &trans    &trans
-            >;
-
-            sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
         };
     };
 };
